@@ -1,0 +1,17 @@
+[server]
+# Không tự động mở browser khi khởi động
+headless = true
+enableCORS = false
+maxUploadSize = 1024 # Cho phép upload file 1GB
+
+[client]
+toolbarMode = "viewer" # Người xem không cần thấy menu settings của Streamlit
+showErrorDetails = false # Ẩn lỗi code thô, thay bằng thông báo thân thiện
+
+[theme]
+base = "dark" # Bắt buộc nền sáng (hoặc dark)
+primaryColor = "#0052CC" # Xanh dương doanh nghiệp
+font = "sans serif"
+
+[runner]
+magicEnabled = false # Tắt 'magic commands' để tăng tốc độ xử lý một chút
