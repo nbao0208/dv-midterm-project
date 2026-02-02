@@ -1,3 +1,4 @@
 data/student_academic_performance_1M.csv
+data/student_academic_performance_1M.parquet
 .DS_Store
 .vscode/
