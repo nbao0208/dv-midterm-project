@@ -28,7 +28,7 @@ with st.sidebar:
     )
     st.markdown("---")
     st.markdown("**Version:** 1.0.0")
-    st.markdown("**Author:** Data Team")
+    st.markdown("**Author:** Group 07")
 
 # --- 4. NỘI DUNG TRANG CHỦ ---
 

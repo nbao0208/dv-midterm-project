@@ -143,3 +143,28 @@ def add_lms_forum_features(df_input):
         ).astype('category')
         
     return df
+
+def add_risk_and_habit_features(df_input):
+    """
+    Tạo các nhãn và mask dùng cho phân tích rủi ro & thói quen.
+    Giữ nguyên các cột số để tính toán Radar Chart, chỉ thêm cột phân loại mới.
+    """
+    if df_input.empty: return df_input
+    df = df_input.copy()
+
+    # Tạo cờ boolean trực tiếp trong DataFrame 
+    if 'dropout_risk_score' in df.columns:
+        df['is_high_risk'] = df['dropout_risk_score'] >= 0.9
+
+    if 'top_performer_flag' in df.columns:
+        # Chuyển từ category/int sang boolean để filter dễ dàng hơn
+        df['is_top_performer'] = df['top_performer_flag'].astype(int) == 1
+
+    # [TÙY CHỌN]: Tạo thêm các nhãn tĩnh cho thói quen nếu sau này muốn dùng Boxplot
+    # Ví dụ: Nhãn giấc ngủ (Giữ nguyên cột sleep_hours bằng số)
+    if 'sleep_hours' in df.columns:
+        bins = [-0.1, 4, 7, 9, 24]
+        labels = ['Thiếu ngủ trầm trọng', 'Thiếu ngủ', 'Đủ giấc', 'Ngủ nhiều']
+        df['sleep_quality_label'] = pd.cut(df['sleep_hours'], bins=bins, labels=labels).astype('category')
+
+    return df
