@@ -120,9 +120,9 @@ with row2_col1:
         # Cần tạo file pages/03_socioeconomic.py
         if st.button("Xem báo cáo", key="btn_grp3"):
             try:
-                st.switch_page("pages/03_socioeconomic.py")
+                st.switch_page("pages/03_socioeconomic_analyze.py")
             except Exception:
-                st.warning("Vui lòng tạo file 'pages/03_socioeconomic.py'")
+                st.warning("Vui lòng tạo file 'pages/03_socioeconomic_analyze.py'")
 
 with row2_col2:
     with st.container(border=True):
