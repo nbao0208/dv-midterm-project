@@ -47,6 +47,67 @@ def add_ai_features(df_input):
         }).fillna('Không rõ').astype('category')
     return df
 
+def add_tuition_features(df_input):
+    if df_input.empty: return df_input
+    df = df_input.copy()
+    if 'private_tuition' in df.columns:
+        df['private_tuition_label'] = df['private_tuition'].map({
+            1.0: 'Có học thêm', 
+            0.0: 'Không học thêm'
+        }).fillna('Không rõ').astype('category')
+    return df
+
+def add_parental_education_features(df_input):
+    if df_input.empty: return df_input
+    df = df_input.copy()
+    if 'parent_education' in df.columns:
+        bins = [-1, 0, 1, 2, 3, 4, 5]
+        labels = ['Không bằng cấp', 'Tiểu học', 'THCS', 'THPT', 'Đại học', 'Sau đại học']
+        df['parent_education_group'] = pd.cut(
+            df['parent_education'], 
+            bins=bins, 
+            labels=labels
+        ).astype('category')
+    return df
+
+def add_family_income_features(df_input):
+    if df_input.empty: return df_input
+    df = df_input.copy()
+    if 'family_income' in df.columns:
+        df['family_income_rounded'] = df['family_income'].round(2)
+    return df
+
+def add_mental_stress_features(df_input):
+    if df_input.empty: return df_input
+    df = df_input.copy()
+    if 'mental_stress' in df.columns:
+        bins = [-0.1, 3, 7, 10]
+        labels = ['Nhẹ','Đáng kể', 'Cực độ']
+        df['mental_stress_group'] = pd.cut(
+            df['mental_stress'], 
+            bins=bins, 
+            labels=labels,
+            include_lowest=True,
+            right=True
+        ).astype('category')
+    return df
+
+def add_study_hours_daily_features(df_input):
+    if df_input.empty: return df_input
+    df = df_input.copy()
+    if 'study_hours_daily' in df.columns:
+        df['study_hours_daily_rounded'] = df['study_hours_daily'].round().astype('int8')
+        bins = [-0.1, 1, 3, 5, 10]
+        labels = ['Rất ít (0-1h)', 'Ít (1-3h)', 'Trung bình (3-5h)', 'Nhiều (>5h)']
+        df['study_hours_group'] = pd.cut(
+            df['study_hours_daily'], 
+            bins=bins, 
+            labels=labels,
+            include_lowest=True,
+            right=True
+        ).astype('category')
+    return df
+
 def add_coding_features(df_input):
     if df_input.empty: return df_input
     df = df_input.copy()
