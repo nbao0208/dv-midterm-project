@@ -9,7 +9,7 @@ toolbarMode = "viewer" # Người xem không cần thấy menu settings của St
 showErrorDetails = false # Ẩn lỗi code thô, thay bằng thông báo thân thiện
 
 [theme]
-base = "white" # Bắt buộc nền sáng (hoặc dark)
+base = "light" # Bắt buộc nền sáng (hoặc dark)
 primaryColor = "#0052CC" # Xanh dương doanh nghiệp
 font = "sans serif"
 
